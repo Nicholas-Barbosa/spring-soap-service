@@ -14,14 +14,13 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
-public class WebConfig extends WsConfigurerAdapter{
-
+public class WebServiceConfig extends WsConfigurerAdapter {
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
 		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 		servlet.setApplicationContext(applicationContext);
 		servlet.setTransformWsdlLocations(true);
-		return new ServletRegistrationBean(servlet, "http://localhost:8080/ws/countries.wsdl");
+		return new ServletRegistrationBean(servlet, "/ws/*");
 	}
 
 	@Bean(name = "countries")
